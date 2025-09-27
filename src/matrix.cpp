@@ -183,3 +183,30 @@ Matrix matrix_transpose(Matrix m) {
     }
     return result;
 }
+Matrix matrix_submatrix(Matrix m, int start_row, int start_col, int rows, int cols) {
+    if (m.data == nullptr || m.rows <= 0 || m.cols <= 0) {
+        throw std::invalid_argument("Исходная матрица пустая или невалидная");
+
+    }
+
+    if (start_row < 0 || start_col < 0 || rows <= 0 || cols <= 0) {
+        throw std::invalid_argument("Параметры должны быть неотрицательными, размеры - положительными");
+
+    }
+
+    if (start_row + rows > m.rows || start_col + cols > m.cols) {
+        throw std::invalid_argument("Подматрица выходит за границы исходной матрицы");
+
+    }
+
+    Matrix submatrix =  create_matrix(rows, cols);
+
+    for (int i = 0; i < rows; i++) {
+        for (int j = 0; j < cols; j++) {
+            submatrix.data[i][j] = m.data[start_row + i][start_col + j];
+
+        }
+    }
+
+    return submatrix;
+}

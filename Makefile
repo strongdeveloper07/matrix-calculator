@@ -1,5 +1,6 @@
 CXX = g++
-CXXFLAGS = -std=c++17 -Wall -Wextra
+# Добавьте флаги для статической компиляции
+CXXFLAGS = -std=c++17 -Wall -Wextra -static-libgcc -static-libstdc++
 TARGET_MAIN = matrix_app
 TARGET_TEST = test_app
 SRC_DIR = src
@@ -16,7 +17,6 @@ test: $(TARGET_TEST)
 	./$(TARGET_TEST)
 
 docs:
-	doxygen -g Doxyfile
 	doxygen Doxyfile
 
 clean:

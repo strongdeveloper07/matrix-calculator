@@ -35,6 +35,40 @@ int main() {
         Matrix F = matrix_from_array(arr, 2, 3);
         print_matrix(F);
 
+        // Индивидуальное задание (№13)
+        std::cout << "\n=== Тест 5: Выделение подматрицы ===" << std::endl;
+
+
+        double big_data[] = {
+             1.1, 2.2, 3.3, 4.4,
+            5.5, 6.6, 7.7, 8.8,
+            9.9, 10.1, 11.11, 12.12,
+            13.13, 14.14, 15.15, 16.16
+        };
+        Matrix big_matrix = matrix_from_array(big_data, 4, 4);
+
+        std::cout << "Исходная матрица 4x4:" << std::endl;
+        print_matrix(big_matrix);
+
+        Matrix sub = matrix_submatrix(big_matrix, 1, 1, 2, 3);
+        std::cout << "Подматрица 2x3 (начиная с [1, 1]:)" << std::endl;
+        print_matrix(sub);
+
+        Matrix single_element = matrix_submatrix(big_matrix, 2, 2, 1, 1);
+        std::cout << "Подматрица 1x1 (элемент [2, 2]):" << std::endl;
+        print_matrix(single_element);
+
+
+        std::cout << "Исходный элемент [2, 2]:" << big_matrix.data[2][2] << std::endl;
+        std::cout << "Элемент подматрицы [0, 0]:" << single_element.data[0][0] << std::endl;
+
+
+        single_element.data[0][0] = 999.9;
+        std::cout << "После изменения подматрицы:" << std::endl;
+        std::cout << "Исходный элемент [2, 2]:" << big_matrix.data[2][2] << "(не изменился)" << std::endl;
+        std::cout << "элемент подматрицы [0, 0]:" << single_element.data[0][0] << "(изменился)" << std::endl;
+
+
         // Освобождение памяти
         free_matrix(A);
         free_matrix(B);
@@ -42,6 +76,9 @@ int main() {
         free_matrix(D);
         free_matrix(E);
         free_matrix(F);
+        free_matrix(big_matrix);
+        free_matrix(sub);
+        free_matrix(single_element);
 
         std::cout << "\n✅ Все тесты пройдены успешно!" << std::endl;
 

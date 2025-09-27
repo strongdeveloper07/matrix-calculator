@@ -107,12 +107,70 @@ void test_matrix_transpose() {
     std::cout << "test_matrix_transpose: PASSED" << std::endl;
 }
 
+void test_matrix_submatrix() {
+    std::cout << "=== Тестирование выделения подматрицы ===" << std::endl;
+
+
+    double arr[] = {1, 2, 3, 4, 5, 6, 7, 8, 9};
+    Matrix original = matrix_from_array(arr, 3, 3);
+
+
+    Matrix sub1 = matrix_submatrix(original, 0, 0, 2, 2);
+    assert(sub1.rows == 2);
+    assert(sub1.cols == 2);
+    assert(sub1.data[0][0] == 1);
+    assert(sub1.data[0][1] == 2);
+    assert(sub1.data[1][0] == 4);
+    assert(sub1.data[1][1] == 5);
+    free_matrix(sub1);
+
+    Matrix sub2 = matrix_submatrix(original, 1, 1, 2, 2);
+    assert(sub2.rows == 2);
+    assert(sub2.cols == 2);
+    assert(sub2.data[0][0] == 5);
+    assert(sub2.data[0][1] == 6);
+    assert(sub2.data[1][0] == 8);
+    assert(sub2.data[1][1] == 9);
+    free_matrix(sub2);
+
+
+    Matrix sub3 = matrix_submatrix(original, 1, 1, 1, 1);
+    assert(sub3.rows == 1);
+    assert(sub3.cols == 1);
+    assert(sub3.data[0][0] == 5);
+    free_matrix(sub3);
+
+
+    try {
+        Matrix sub4 = matrix_submatrix(original, 2, 2, 2, 2);
+        assert(false);
+
+    } catch (const std::exception& e) {
+        std::cout << "Тест на выход за границы пройден:" << e.what() << std::endl;
+
+    }
+
+    try {
+        Matrix sub5 = matrix_submatrix(original, -1, 0, 2, 2);
+        assert(false);
+
+    } catch (const std::exception& e) {
+        std::cout << "Тест на отрицательный индекс пройден:" << e.what() << std::endl;
+
+    }
+
+    free_matrix(original);
+    std::cout << "test_matrix_submatrix: PASSED" << std::endl;
+
+}
+
 int main () {
     test_create_and_free();
     test_matrix_addition();
     test_matrix_multiply();
     test_error_handling();
     test_matrix_transpose();
+    test_matrix_submatrix();
     std::cout << "All tests passed!" << std::endl;
     return 0;
 }

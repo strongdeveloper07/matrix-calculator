@@ -61,4 +61,16 @@ Matrix matrix_from_array(double* data, int rows, int cols);
  * @throw std::invalid_argument Если матрица пустая или невалидная
  */
 Matrix matrix_transpose(Matrix m);
+/**
+ * @brief Выделение подматрицы из исходной матрицы
+ * @param m Исходная матрица
+ * @param start_row Начальная строка (индекс начинается с 0)
+ * @param start_col Начальный столбец (индекс начинается с 0)
+ * @param rows Количество строк в подматрице
+ * @param cols Количество столбцов в подматрице
+ * @return Matrix Подматрица заданного размера
+ * @throw std::invalid_argument Если параметры выходят за границы исходной матрицы
+ */
+Matrix matrix_submatrix(Matrix m, int start_row, int start_col, int rows, int cols);
+
 #endif

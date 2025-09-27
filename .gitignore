@@ -1,23 +1,53 @@
-# Исполняемые файлы
+# Исполняемые файлы (результаты компиляции)
 matrix_app
 test_app
 
 # Объектные файлы
 *.o
+*.a
+*.so
+*.dll
+*.exe
 
 # Резервные файлы
 *.bak
 *~
+*.tmp
 
 # Файлы редакторов
 .vscode/
 .idea/
 *.swp
 *.swo
+*.swn
+.session
 
 # Системные файлы
 .DS_Store
 Thumbs.db
+desktop.ini
 
-# Временные файлы
-*.tmp
+# Документация (сгенерированная автоматически)
+/docs/html/
+/docs/latex/
+
+# Файлы сборки
+build/
+dist/
+*.log
+cmake-build-*/
+
+# Резервные копии конфигурационных файлов
+Doxyfile.bak
+
+# Временные файлы компиляции
+*.gcno
+*.gcda
+*.gcov
+
+# Файлы профилирования
+gmon.out
+
+# Файлы пакетных менеджеров
+package-lock.json
+yarn.lock
